@@ -14,14 +14,13 @@ jQuery.responsImg = (element, settings) ->
   theWindow     = jQuery window
   element       = jQuery element
   rimData       = {}
-  at2xRimData   = {}
   resizeTimer   = null
   largestSize   = 0
   retinaDisplay = false
   
   # initialize the plugin
   init = ->
-    rimData[0]    = element.attr 'src'
+    rimData[0]    = new Array(element.attr 'src')
     retinaDisplay = true if window.devicePixelRatio >= 1.5
 
     theWindow.on 'resize orientationchange', resizeDetected
@@ -34,16 +33,11 @@ jQuery.responsImg = (element, settings) ->
   determineSizes = ->
     elData        = element.data()
     pattern       = /^responsimg/
-    retinaPattern = /^at2xresponsimg/
 
     for key, value of elData
       if pattern.test key
         newKey          = key.replace 'responsimg', ''
-        rimData[newKey] = value
-      
-      else if retinaPattern.test key
-        newKey              = key.replace 'at2xresponsimg', ''
-        at2xRimData[newKey] = value
+        rimData[newKey] = value.replace(' ', '').split ','
 
     checkSizes()
 
@@ -88,10 +82,10 @@ jQuery.responsImg = (element, settings) ->
       for key, value of rimData
         if key <= theWidth and key >= currentSelection
           currentSelection = key
-          newSrc           = rimData[currentSelection]
+          newSrc           = rimData[currentSelection][0]
 
-      if retinaDisplay is true and at2xRimData[currentSelection]?
-        newSrc = at2xRimData[currentSelection]
+      if retinaDisplay is true and rimData[currentSelection][1]?
+        newSrc = rimData[currentSelection][1]
 
       setImage newSrc
 

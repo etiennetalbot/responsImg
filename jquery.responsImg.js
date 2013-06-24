@@ -2,7 +2,7 @@
 (function() {
 
   jQuery.responsImg = function(element, settings) {
-    var at2xRimData, checkSizes, config, defineWidth, determineSizes, init, largestSize, resizeDetected, resizeTimer, retinaDisplay, rimData, setImage, theWindow;
+    var checkSizes, config, defineWidth, determineSizes, init, largestSize, resizeDetected, resizeTimer, retinaDisplay, rimData, setImage, theWindow;
     config = {
       allowDownsize: false
     };
@@ -12,12 +12,11 @@
     theWindow = jQuery(window);
     element = jQuery(element);
     rimData = {};
-    at2xRimData = {};
     resizeTimer = null;
     largestSize = 0;
     retinaDisplay = false;
     init = function() {
-      rimData[0] = element.attr('src');
+      rimData[0] = new Array(element.attr('src'));
       if (window.devicePixelRatio >= 1.5) {
         retinaDisplay = true;
       }
@@ -25,18 +24,14 @@
       determineSizes();
     };
     determineSizes = function() {
-      var elData, key, newKey, pattern, retinaPattern, value;
+      var elData, key, newKey, pattern, value;
       elData = element.data();
       pattern = /^responsimg/;
-      retinaPattern = /^at2xresponsimg/;
       for (key in elData) {
         value = elData[key];
         if (pattern.test(key)) {
           newKey = key.replace('responsimg', '');
-          rimData[newKey] = value;
-        } else if (retinaPattern.test(key)) {
-          newKey = key.replace('at2xresponsimg', '');
-          at2xRimData[newKey] = value;
+          rimData[newKey] = value.replace(' ', '').split(',');
         }
       }
       checkSizes();
@@ -79,11 +74,11 @@
           value = rimData[key];
           if (key <= theWidth && key >= currentSelection) {
             currentSelection = key;
-            newSrc = rimData[currentSelection];
+            newSrc = rimData[currentSelection][0];
           }
         }
-        if (retinaDisplay === true && (at2xRimData[currentSelection] != null)) {
-          newSrc = at2xRimData[currentSelection];
+        if (retinaDisplay === true && (rimData[currentSelection][1] != null)) {
+          newSrc = rimData[currentSelection][1];
         }
         setImage(newSrc);
       }
