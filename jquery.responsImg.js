@@ -4,7 +4,8 @@
   jQuery.responsImg = function(element, settings) {
     var checkSizes, config, defineWidth, determineSizes, init, largestSize, resizeDetected, resizeTimer, retinaDisplay, rimData, setImage, theWindow;
     config = {
-      allowDownsize: false
+      allowDownsize: false,
+      delay: 200
     };
     if (settings) {
       jQuery.extend(config, settings);
@@ -38,7 +39,7 @@
     };
     resizeDetected = function() {
       clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(checkSizes, 200);
+      resizeTimer = setTimeout(checkSizes, config.delay);
     };
     defineWidth = function() {
       var deviceWidth;

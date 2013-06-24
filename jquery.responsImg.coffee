@@ -1,6 +1,6 @@
 # responsImg jQuery Plugin
 # A plugin for loading the right image size according to browser width
-# version 1.0, June 23th, 2013
+# version 1.0.2, June 24th, 2013
 # by Etienne Talbot
 
 jQuery.responsImg = (element, settings) ->
@@ -8,6 +8,7 @@ jQuery.responsImg = (element, settings) ->
   # default config values
   config =
     allowDownsize: false    # If set to false, smaller images will never be loaded on resize or orientationchange
+    delay:         200      # Delay between the window resize action and the image change (too low means more demanding for the browser)
   
   jQuery.extend config, settings if settings
   
@@ -45,7 +46,7 @@ jQuery.responsImg = (element, settings) ->
   
   resizeDetected = ->
     clearTimeout resizeTimer
-    resizeTimer = setTimeout checkSizes, 200
+    resizeTimer = setTimeout checkSizes, config.delay
 
     return
 

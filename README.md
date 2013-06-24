@@ -21,16 +21,21 @@ Parameters
 ### allowDownsize
 *(boolean) default: false* - By default, if a bigger image is already loaded, responsImg will not try to load a smaller one. To override this behavior, set to true.
 
+### delay
+*(integer) default: 200* - Delay between the window resize action and the image change. Be careful, as a low number means a more demanding process for the browser
+
 Usage
 -----
 ### JavaScript
 	$('.responsive-image').responsImg({
-	  allowDownsize: true
+	  allowDownsize: true,
+	  delay: 250
 	});
 
 ### CoffeeScript
 	$('.responsive-image').responsImg
 	  allowDownsize: true
+	  delay: 250
 
 ### HTML
 	<img src="default-image.png" class="responsive-image"
