@@ -1,7 +1,7 @@
 responsImg
 ==========
 
-CoffeeScript plugin to make images load the smallest possible version of itself required for the current viewport size. See it as media queries for img tags.
+jQuery plugin written in CoffeeScript to make images load the smallest possible version of itself required for the current viewport size. See it as media queries for img tags.
 
 Requirements
 ------------
