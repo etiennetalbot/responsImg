@@ -1,6 +1,6 @@
 # responsImg jQuery Plugin
 # A plugin for loading the right image size according to browser width
-# version 1.0.2, June 24th, 2013
+# version 1.0.3, June 26th, 2013
 # by Etienne Talbot
 
 jQuery.responsImg = (element, settings) ->
@@ -24,7 +24,7 @@ jQuery.responsImg = (element, settings) ->
     rimData[0]    = new Array(element.attr 'src')
     retinaDisplay = true if window.devicePixelRatio >= 1.5
 
-    theWindow.on 'resize orientationchange', resizeDetected
+    theWindow.on 'resize.responsImg orientationchange.responsImg', resizeDetected
     
     determineSizes()
 

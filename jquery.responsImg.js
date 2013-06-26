@@ -21,7 +21,7 @@
       if (window.devicePixelRatio >= 1.5) {
         retinaDisplay = true;
       }
-      theWindow.on('resize orientationchange', resizeDetected);
+      theWindow.on('resize.responsImg orientationchange.responsImg', resizeDetected);
       determineSizes();
     };
     determineSizes = function() {
