@@ -6,13 +6,13 @@ jQuery plugin written in CoffeeScript to make images load the smallest possible 
 Requirements
 ------------
 
-This plugin requires jQuery
+This plugin requires jQuery.
 
 Information
 -----------
 - Different image sources are set as data attributes in the `<img>` tag itself.
-- You can specify @2x image sources. If specified, they will be used if the user has a retina display. Retina sizes must have a matching non-retina size in order to work. To set a retina image, add a comma and a space after the first source in a data atribute. ("image.jpg, image@2x.jpg") 
-- Breakpoints are determined by the name of the data attribute. All of them must start with `data-responsimg` followed by the pixel value of the breakpoint (ex: `data-responsimg960`)
+- You can specify @2x image sources. If specified, they will be used if the user has a retina display. Retina sizes must have a matching non-retina size in order to work. To set a retina image, add a comma and a space after the first source in a data atribute ("image.jpg, image@2x.jpg").
+- Breakpoints are determined by the name of the data attribute. All of them must start with `data-responsimg` followed by the pixel value of the breakpoint (ex: `data-responsimg960`).
 - I recommend using the smallest size as the default image (the actual `src` attribute), or else search engines won't see your image.
 
 Parameters
@@ -25,7 +25,7 @@ Parameters
 *(boolean) default: false* - By default, the sizes specified in the data attributes are related to the size of the viewport. If elementQuery is set to true, the sizes specified in the attributes will be related to the size of the image itself.
 
 ### delay
-*(integer) default: 200* - Delay between the window resize action and the image change. Be careful, as a low number means a more demanding process for the browser
+*(integer) default: 200* - Delay between the window resize action and the image change. Be careful, as a low number means a more demanding process for the browser.
 
 Usage
 -----
@@ -52,3 +52,5 @@ Usage
 In this example, the default image is `default-image.png`. This image is always loaded… make sure it's pretty small. You could always remove the `src` attribute completely if you really wanted to.
 
 The image `image-320.png` is loaded and displayed if the window reaches a width of **320** pixels. If the screen used is retina, the image used will only be `image-320@2x.png`. If the window reaches **480** pixels wide, `image-480.png` will be loaded and displayed. Even if you have a retina display, this image will override the previous one. If the window reaches **768** pixels wide, `blue-car.png` will be loaded and displayed.
+
+**Important** - *Please keep in mind that if the elementQuery is set to true, the breakpoints won't be defined by the width of the window but instead by the width of the image itself.*)
