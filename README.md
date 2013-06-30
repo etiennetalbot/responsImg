@@ -53,4 +53,4 @@ In this example, the default image is `default-image.png`. This image is always 
 
 The image `image-320.png` is loaded and displayed if the window reaches a width of **320** pixels. If the screen used is retina, the image used will only be `image-320@2x.png`. If the window reaches **480** pixels wide, `image-480.png` will be loaded and displayed. Even if you have a retina display, this image will override the previous one. If the window reaches **768** pixels wide, `blue-car.png` will be loaded and displayed.
 
-**Important** - *Please keep in mind that if the elementQuery is set to true, the breakpoints won't be defined by the width of the window but instead by the width of the image itself.*)
+**Important** - *Please keep in mind that if the elementQuery is set to true, the breakpoints won't be defined by the width of the window but instead by the width of the image itself.*
