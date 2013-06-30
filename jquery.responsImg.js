@@ -5,6 +5,7 @@
     var checkSizes, config, defineWidth, determineSizes, init, largestSize, resizeDetected, resizeTimer, retinaDisplay, rimData, setImage, theWindow;
     config = {
       allowDownsize: false,
+      elementQuery: false,
       delay: 200
     };
     if (settings) {
@@ -42,21 +43,25 @@
       resizeTimer = setTimeout(checkSizes, config.delay);
     };
     defineWidth = function() {
-      var deviceWidth;
-      deviceWidth = null;
-      if (window.orientation != null) {
-        if (window.orientation === 0) {
-          deviceWidth = window.screen.width;
-        } else {
-          deviceWidth = window.screen.height;
-        }
-        if (navigator.userAgent.indexOf('Android') >= 0 && window.devicePixelRatio) {
-          deviceWidth = deviceWidth / window.devicePixelRatio;
-        }
+      var definedWidth;
+      definedWidth = null;
+      if (config.elementQuery === true) {
+        definedWidth = element.width();
       } else {
-        deviceWidth = theWindow.width();
+        if (window.orientation != null) {
+          if (window.orientation === 0) {
+            definedWidth = window.screen.width;
+          } else {
+            definedWidth = window.screen.height;
+          }
+          if (navigator.userAgent.indexOf('Android') >= 0 && window.devicePixelRatio) {
+            definedWidth = definedWidth / window.devicePixelRatio;
+          }
+        } else {
+          definedWidth = theWindow.width();
+        }
       }
-      return deviceWidth;
+      return definedWidth;
     };
     checkSizes = function() {
       var currentSelection, doIt, key, newSrc, theWidth, value;

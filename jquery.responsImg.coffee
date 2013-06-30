@@ -1,6 +1,6 @@
 # responsImg jQuery Plugin
 # A plugin for loading the right image size according to browser width
-# version 1.0.3, June 26th, 2013
+# version 1.1.0, June 30th, 2013
 # by Etienne Talbot
 
 jQuery.responsImg = (element, settings) ->
@@ -8,6 +8,7 @@ jQuery.responsImg = (element, settings) ->
   # default config values
   config =
     allowDownsize: false    # If set to false, smaller images will never be loaded on resize or orientationchange
+    elementQuery:  false    # False = window's width breakpoints. True = image's width breakpoints.
     delay:         200      # Delay between the window resize action and the image change (too low means more demanding for the browser)
   
   jQuery.extend config, settings if settings
@@ -51,21 +52,25 @@ jQuery.responsImg = (element, settings) ->
     return
 
   defineWidth = ->
-    deviceWidth = null
+    definedWidth = null
 
-    if window.orientation?
-      if window.orientation is 0
-        deviceWidth = window.screen.width
-      else
-        deviceWidth = window.screen.height
-
-      if navigator.userAgent.indexOf('Android') >= 0 and window.devicePixelRatio
-        deviceWidth = deviceWidth / window.devicePixelRatio;
-
+    if config.elementQuery is true
+      definedWidth = element.width()
+      
     else
-      deviceWidth = theWindow.width()
+      if window.orientation?
+        if window.orientation is 0
+          definedWidth = window.screen.width
+        else
+          definedWidth = window.screen.height
+
+        if navigator.userAgent.indexOf('Android') >= 0 and window.devicePixelRatio
+          definedWidth = definedWidth / window.devicePixelRatio;
+
+      else
+        definedWidth = theWindow.width()
     
-    deviceWidth
+    definedWidth
 
   checkSizes = ->
     theWidth         = defineWidth()
