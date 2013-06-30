@@ -21,6 +21,9 @@ Parameters
 ### allowDownsize
 *(boolean) default: false* - By default, if a bigger image is already loaded, responsImg will not try to load a smaller one. To override this behavior, set to true.
 
+### elementQuery
+*(boolean) default: false* - By default, the sizes specified in the data attributes are related to the size of the viewport. If elementQuery is set to true, the sizes specified in the attributes will be related to the size of the image itself.
+
 ### delay
 *(integer) default: 200* - Delay between the window resize action and the image change. Be careful, as a low number means a more demanding process for the browser
 
@@ -29,12 +32,14 @@ Usage
 ### JavaScript
 	$('.responsive-image').responsImg({
 	  allowDownsize: true,
+	  elementQuery: true,
 	  delay: 250
 	});
 
 ### CoffeeScript
 	$('.responsive-image').responsImg
 	  allowDownsize: true
+	  elementQuery: true
 	  delay: 250
 
 ### HTML
