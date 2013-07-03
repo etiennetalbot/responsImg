@@ -41,10 +41,13 @@
 <li>Easily provide high DPI (retina) alternatives</li>
 <li>Media queries or element queries... your call!</li>
 <li>Allow or prevent the loading of smaller images on resize or device rotation (useful when the design requires a different image when a smaller breakpoint is reached)</li>
-<li>Doesn't use the <code>&lt;picture&gt;</code> tag yet since it's still a draft: the specs may change. You won't have forward compatibility issues using responsImg
-## How to use responImg
-All you need is one line of javascript (or coffeescript) and an <code>&lt;img&gt;</code> tag.</li>
-</ul><ol>
+<li>Doesn't use the <code>&lt;picture&gt;</code> tag yet since it's still a draft: the specs may change. You won't have forward compatibility issues using responsImg</li>
+</ul><h2>
+<a name="how-to-use-responimg" class="anchor" href="#how-to-use-responimg"><span class="octicon octicon-link"></span></a>How to use responImg</h2>
+
+<p>All you need is one line of javascript (or coffeescript) and an <code>&lt;img&gt;</code> tag.</p>
+
+<ol>
 <li>Use a super lightweight version of your image as the default <code>src</code> of your <code>&lt;img&gt;</code> tag. You can even leave the src empty if you really really want to...</li>
 <li>Add more sources in data attributes while specifying the breakpoints for each one. If you have retina versions of these images, add a comma and the path to the high DPI version.</li>
 <li>Add a line of jQuery calling responsImg. You're done!</li>
