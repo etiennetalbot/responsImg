@@ -10,6 +10,7 @@ jQuery.responsImg = (element, settings) ->
     allowDownsize: false    # If set to false, smaller images will never be loaded on resize or orientationchange
     elementQuery:  false    # False = window's width breakpoints. True = image's width breakpoints.
     delay:         200      # Delay between the window resize action and the image change (too low means more demanding for the browser)
+    breakpoints:   null
   
   jQuery.extend config, settings if settings
   
@@ -37,8 +38,18 @@ jQuery.responsImg = (element, settings) ->
     pattern       = /^responsimg/
 
     for key, value of elData
+      
       if pattern.test key
         newKey          = key.replace 'responsimg', ''
+
+        if isNaN(newKey)
+          newKey = newKey.toLowerCase()
+          for breakKey, breakValue of config.breakpoints
+            if newKey == breakKey
+              newKey = breakValue
+        else
+          newKey = parseInt newKey
+
         rimData[newKey] = value.replace(' ', '').split ','
 
     checkSizes()
@@ -86,8 +97,10 @@ jQuery.responsImg = (element, settings) ->
 
     if doIt is true
       for key, value of rimData
-        if key <= theWidth and key >= currentSelection
-          currentSelection = key
+
+        #parseInt is used here because for some reason, keys over 999 are not exactly considered as integers
+        if parseInt(key) <= theWidth and parseInt(key) >= currentSelection
+          currentSelection = parseInt key
           newSrc           = rimData[currentSelection][0]
 
       if retinaDisplay is true and rimData[currentSelection][1]?

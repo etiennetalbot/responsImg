@@ -6,7 +6,8 @@
     config = {
       allowDownsize: false,
       elementQuery: false,
-      delay: 200
+      delay: 200,
+      breakpoints: null
     };
     if (settings) {
       jQuery.extend(config, settings);
@@ -26,13 +27,25 @@
       determineSizes();
     };
     determineSizes = function() {
-      var elData, key, newKey, pattern, value;
+      var breakKey, breakValue, elData, key, newKey, pattern, value, _ref;
       elData = element.data();
       pattern = /^responsimg/;
       for (key in elData) {
         value = elData[key];
         if (pattern.test(key)) {
           newKey = key.replace('responsimg', '');
+          if (isNaN(newKey)) {
+            newKey = newKey.toLowerCase();
+            _ref = config.breakpoints;
+            for (breakKey in _ref) {
+              breakValue = _ref[breakKey];
+              if (newKey === breakKey) {
+                newKey = breakValue;
+              }
+            }
+          } else {
+            newKey = parseInt(newKey);
+          }
           rimData[newKey] = value.replace(' ', '').split(',');
         }
       }
@@ -78,8 +91,8 @@
       if (doIt === true) {
         for (key in rimData) {
           value = rimData[key];
-          if (key <= theWidth && key >= currentSelection) {
-            currentSelection = key;
+          if (parseInt(key) <= theWidth && parseInt(key) >= currentSelection) {
+            currentSelection = parseInt(key);
             newSrc = rimData[currentSelection][0];
           }
         }
