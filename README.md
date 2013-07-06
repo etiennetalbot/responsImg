@@ -10,6 +10,8 @@ This plugin requires jQuery.
 
 Information
 -----------
+Current version: 1.2.0
+
 - Different image sources are set as data attributes in the `<img>` tag itself.
 - You can specify @2x image sources. If specified, they will be used if the user has a retina display. Retina sizes must have a matching non-retina size in order to work. To set a retina image, add a comma and a space after the first source in a data atribute ("image.jpg, image@2x.jpg").
 - Breakpoints are determined by the name of the data attribute. All of them must start with `data-responsimg` followed by the pixel value of the breakpoint (ex: `data-responsimg960`) or by a `-` plus the name of the breakpoint (ex: `data-responsimg-smalltablet`). *You must define the `breakpoints` parameter if you want to use named breakpoints.*
@@ -75,4 +77,4 @@ The image `image-320.png` is loaded and displayed if the window reaches a width 
 **Important** - *Please keep in mind that if the elementQuery is set to true, the breakpoints won't be defined by the width of the window but instead by the width of the image itself.*
 
 ## Thanks
-Special thanks to Bernard Chhun for the suggestions and support.
+Special thanks to [Léon Talbot](https://twitter.com/leontalbot) and [Bernard Chhun](https://github.com/bchhun) for the suggestions and support.

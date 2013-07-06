@@ -1,6 +1,6 @@
 # responsImg jQuery Plugin
 # A plugin for loading the right image size according to browser width
-# version 1.1.0, June 30th, 2013
+# version 1.2.0, July 6th, 2013
 # by Etienne Talbot
 
 jQuery.responsImg = (element, settings) ->
@@ -38,7 +38,7 @@ jQuery.responsImg = (element, settings) ->
     pattern       = /^responsimg/
 
     for key, value of elData
-      
+
       if pattern.test key
         newKey          = key.replace 'responsimg', ''
 
