@@ -1,16 +1,17 @@
 # responsImg jQuery Plugin
 # A plugin for loading the right image size according to browser width
-# version 1.2.0, July 6th, 2013
+# version 1.3.0, July 9th, 2013
 # by Etienne Talbot
 
 jQuery.responsImg = (element, settings) ->
   
   # default config values
   config =
-    allowDownsize: false    # If set to false, smaller images will never be loaded on resize or orientationchange
-    elementQuery:  false    # False = window's width breakpoints. True = image's width breakpoints.
-    delay:         200      # Delay between the window resize action and the image change (too low means more demanding for the browser)
-    breakpoints:   null
+    allowDownsize:  false    # If set to false, smaller images will never be loaded on resize or orientationchange
+    elementQuery:   false    # False = window's width breakpoints. True = image's width breakpoints.
+    delay:          200      # Delay between the window resize action and the image change (too low means more demanding for the browser)
+    breakpoints:    null     # Object containing the different breakpoints for your page or element
+    considerDevice: false    # If true, responsImg will pick the image size while considering the zoomed-out level of mobile devices
   
   jQuery.extend config, settings if settings
   
@@ -68,20 +69,33 @@ jQuery.responsImg = (element, settings) ->
     if config.elementQuery is true
       definedWidth = element.width()
       
-    else
-      if window.orientation?
-        if window.orientation is 0
-          definedWidth = window.screen.width
-        else
-          definedWidth = window.screen.height
+      if window.orientation? and config.considerDevice
+        windowWidth       = theWindow.width()
+        mobileWindowWidth = getMobileWindowWidth()
+        
+        definedWidth = Math.ceil(mobileWindowWidth * definedWidth / windowWidth)
 
-        if navigator.userAgent.indexOf('Android') >= 0 and window.devicePixelRatio
-          definedWidth = definedWidth / window.devicePixelRatio;
+    else
+      if window.orientation? and config.considerDevice
+        definedWidth = getMobileWindowWidth()
 
       else
         definedWidth = theWindow.width()
     
     definedWidth
+
+
+  getMobileWindowWidth = ->
+    if window.orientation is 0
+      mobileWindowWidth = window.screen.width
+    else
+      mobileWindowWidth = window.screen.height
+
+    if navigator.userAgent.indexOf('Android') >= 0 and window.devicePixelRatio
+      mobileWindowWidth = mobileWindowWidth / window.devicePixelRatio;
+
+    mobileWindowWidth
+
 
   checkSizes = ->
     theWidth         = defineWidth()

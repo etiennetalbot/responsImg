@@ -2,12 +2,13 @@
 (function() {
 
   jQuery.responsImg = function(element, settings) {
-    var checkSizes, config, defineWidth, determineSizes, init, largestSize, resizeDetected, resizeTimer, retinaDisplay, rimData, setImage, theWindow;
+    var checkSizes, config, defineWidth, determineSizes, getMobileWindowWidth, init, largestSize, resizeDetected, resizeTimer, retinaDisplay, rimData, setImage, theWindow;
     config = {
       allowDownsize: false,
       elementQuery: false,
       delay: 200,
-      breakpoints: null
+      breakpoints: null,
+      considerDevice: false
     };
     if (settings) {
       jQuery.extend(config, settings);
@@ -56,25 +57,35 @@
       resizeTimer = setTimeout(checkSizes, config.delay);
     };
     defineWidth = function() {
-      var definedWidth;
+      var definedWidth, mobileWindowWidth, windowWidth;
       definedWidth = null;
       if (config.elementQuery === true) {
         definedWidth = element.width();
+        if ((window.orientation != null) && config.considerDevice) {
+          windowWidth = theWindow.width();
+          mobileWindowWidth = getMobileWindowWidth();
+          definedWidth = Math.ceil(mobileWindowWidth * definedWidth / windowWidth);
+        }
       } else {
-        if (window.orientation != null) {
-          if (window.orientation === 0) {
-            definedWidth = window.screen.width;
-          } else {
-            definedWidth = window.screen.height;
-          }
-          if (navigator.userAgent.indexOf('Android') >= 0 && window.devicePixelRatio) {
-            definedWidth = definedWidth / window.devicePixelRatio;
-          }
+        if ((window.orientation != null) && config.considerDevice) {
+          definedWidth = getMobileWindowWidth();
         } else {
           definedWidth = theWindow.width();
         }
       }
       return definedWidth;
+    };
+    getMobileWindowWidth = function() {
+      var mobileWindowWidth;
+      if (window.orientation === 0) {
+        mobileWindowWidth = window.screen.width;
+      } else {
+        mobileWindowWidth = window.screen.height;
+      }
+      if (navigator.userAgent.indexOf('Android') >= 0 && window.devicePixelRatio) {
+        mobileWindowWidth = mobileWindowWidth / window.devicePixelRatio;
+      }
+      return mobileWindowWidth;
     };
     checkSizes = function() {
       var currentSelection, doIt, key, newSrc, theWidth, value;
