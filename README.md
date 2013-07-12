@@ -6,7 +6,7 @@ jQuery plugin written in CoffeeScript to make images load the smallest possible 
 Requirements
 ------------
 
-This plugin requires jQuery 1.8 or up.
+This plugin requires jQuery 1.7 or up.
 
 
 Information
