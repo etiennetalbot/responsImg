@@ -1,7 +1,9 @@
+###
 # responsImg jQuery Plugin
-# A plugin for loading the right image size according to browser width
-# version 1.3.0, July 9th, 2013
+# Turn your <img> tags into responsive images with retina alternatives
+# version 1.3.1, July 12th, 2013
 # by Etienne Talbot
+###
 
 jQuery.responsImg = (element, settings) ->
   
@@ -49,7 +51,7 @@ jQuery.responsImg = (element, settings) ->
             if newKey == breakKey
               newKey = breakValue
         else
-          newKey = parseInt newKey
+          newKey = parseInt newKey, 10
 
         rimData[newKey] = value.replace(' ', '').split ','
 
@@ -57,12 +59,15 @@ jQuery.responsImg = (element, settings) ->
 
     return
   
+  # The browser resize or rotation has been detected
   resizeDetected = ->
     clearTimeout resizeTimer
     resizeTimer = setTimeout checkSizes, config.delay
 
     return
 
+  # Define the actual width of the browser or the image
+  #(wether it's in media query or element query mode)
   defineWidth = ->
     definedWidth = null
 
@@ -84,7 +89,7 @@ jQuery.responsImg = (element, settings) ->
     
     definedWidth
 
-
+  # Detect the width of the mobile window
   getMobileWindowWidth = ->
     if window.orientation is 0
       mobileWindowWidth = window.screen.width
@@ -96,7 +101,7 @@ jQuery.responsImg = (element, settings) ->
 
     mobileWindowWidth
 
-
+  # Determine which image size is appropriate for the current situation
   checkSizes = ->
     theWidth         = defineWidth()
     currentSelection = 0
@@ -113,8 +118,8 @@ jQuery.responsImg = (element, settings) ->
       for key, value of rimData
 
         #parseInt is used here because for some reason, keys over 999 are not exactly considered as integers
-        if parseInt(key) <= theWidth and parseInt(key) >= currentSelection
-          currentSelection = parseInt key
+        if parseInt(key, 10) <= theWidth and parseInt(key, 10) >= currentSelection
+          currentSelection = parseInt key, 10
           newSrc           = rimData[currentSelection][0]
 
       if retinaDisplay is true and rimData[currentSelection][1]?
@@ -124,6 +129,7 @@ jQuery.responsImg = (element, settings) ->
 
     return
 
+  # Change the image's src
   setImage = (newSrc) ->
     oldSrc = element.attr 'src'
 
@@ -131,7 +137,8 @@ jQuery.responsImg = (element, settings) ->
       element.attr 'src', newSrc
 
     return
-
+  
+  # Punch it, Chewie!
   init()
   
   return this
