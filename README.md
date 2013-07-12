@@ -6,11 +6,13 @@ jQuery plugin written in CoffeeScript to make images load the smallest possible 
 Requirements
 ------------
 
-This plugin requires jQuery.
+This plugin requires jQuery 1.8 or up.
+
 
 Information
 -----------
-Current version: 1.2.0
+
+Current version: 1.4.0
 
 - Different image sources are set as data attributes in the `<img>` tag itself.
 - You can specify @2x image sources. If specified, they will be used if the user has a retina display. Retina sizes must have a matching non-retina size in order to work. To set a retina image, add a comma and a space after the first source in a data atribute ("image.jpg, image@2x.jpg").
@@ -37,10 +39,19 @@ Parameters
     	bar: 768,
     	baz: 960
     }
+
+Methods
+-------
+
+###recheck()
+Ask responsImg to check the width again and trigger a `src` change if necessary
+
+    $('.responsive-image').data('responsImg').recheck()
    
 
 Usage
 -----
+
 Here is an example using all parameters. Keep in mind that they are all optional.
 
 ### JavaScript
