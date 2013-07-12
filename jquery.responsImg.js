@@ -1,7 +1,7 @@
 /*
 # responsImg jQuery Plugin
 # Turn your <img> tags into responsive images with retina alternatives
-# version 1.3.1, July 12th, 2013
+# version 1.4.0, July 12th, 2013
 # by Etienne Talbot
 */
 
@@ -128,6 +128,9 @@
       }
     };
     init();
+    this.recheck = function() {
+      checkSizes();
+    };
     return this;
   };
 
