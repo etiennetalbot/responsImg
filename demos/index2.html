@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>responsImg</title>
+<style media="all" type="text/css">
+.wrapper { font-family: 'Helvetica Neue', Helvetica, sans-serif; margin: 0 auto; max-width: 960px; width: 100%; }
+section { border-bottom: 1px solid #ccc; padding: 20px 0; }
+section p { margin: 0; }
+h1 { text-align: center; }
+dt { font-weight: bold; }
+dd { margin: 0 0 10px 20px; }
+a { color: #666; }
+a:hover { color: #000; }
+
+.container { background:#ddd; margin: 0 0 30px; padding: 30px; }
+.container:hover { background: #ccc; }
+
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+<script type="text/javascript" src="jquery.responsImg.js"></script>
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+<script type="text/javascript">
+$(document).on('ready', function(){
+	
+	$( '.responsimg' ).responsImg({
+        allowDownsize: true
+    });
+
+    $( '.responsimg-element' ).responsImg({
+        elementQuery:  true,
+        allowDownsize: true
+    });
+	
+});
+</script>
+</head>
+
+<body>
+<div class="wrapper">
+    <h1>responsImg</h1>
+    <p>Use it to make images responsive, only loading the size you need</p>
+    
+    <p><img src="http://placehold.it/319x200/000000/ffffff/" class="responsimg" width="100%" alt="" data-test="test2"
+        data-responsimg320="http://placehold.it/479x294/aa0000/ffffff/, http://placehold.it/958x588/ff0000/ffffff/"
+        data-responsimg480="http://placehold.it/767x400/aa0000/ffffff/"
+        data-responsimg768="http://placehold.it/1024x500/aa0000/ffffff/"
+    /></p>
+    
+    <p><img src="http://placehold.it/495x294/000000/ffffff/" class="responsimg-element" width="50%" alt=""
+        data-responsimg100="http://placehold.it/199x100/005500/ffffff/"
+        data-responsimg200="http://placehold.it/399x200/000055/ffffff/"
+        data-responsimg400="http://placehold.it/800x400/550000/ffffff/"
+    /></p>
+    <div style="height: 40px; width: 200px; background: blue"></div>
+</div>
+</body>
+</html>
