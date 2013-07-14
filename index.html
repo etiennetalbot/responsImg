@@ -11,12 +11,6 @@
         <meta name="viewport" content="width=device-width">
 
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <style>
-            body {
-                padding-top: 60px;
-                padding-bottom: 40px;
-            }
-        </style>
         <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
         <link rel="stylesheet" href="css/main.css">
 
@@ -24,24 +18,21 @@
     </head>
     <body>
 
-        <!-- This code is taken from http://twitter.github.com/bootstrap/examples/hero.html -->
-
-    <div class="container-narrow">
+    <div class="container">
 
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="#">Check it out on GitHub</a></li>
+          <li><a href="#">More projects from me</a></li>
         </ul>
-        <h3 class="muted">Project name</h3>
+        <h3 class="muted">responsImg</h3>
       </div>
 
       <hr>
 
       <div class="jumbotron">
-        <h1>Super awesome marketing speak!</h1>
-        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+        <h1>Responsive, regular/retina, intelligent images</h1>
+        <p class="lead">Here is <em>responsImg</em>, an easy to install, easy to use jQuery plugin that turns your &lsquo;img&rsquo; tags into responsive images with retina alternatives.</p>
         <a class="btn btn-large btn-success" href="#">Sign up today</a>
       </div>
 
@@ -49,25 +40,25 @@
 
       <div class="row-fluid marketing">
         <div class="span6">
-          <h4>Subheading</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+          <h4>Retina alternatives</h4>
+          <p>The plugin detects if your screen is high-DPI and provides a @2x version if specified.</p>
 
-          <h4>Subheading</h4>
-          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+          <h4>Window resizing and phone rotation detection</h4>
+          <p>If you resize your browser window of flip your mobile device, responsImg will recalculate everything to make sure the right image is displayed</p>
 
-          <h4>Subheading</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+          <h4>Prevent downsizing</h4>
+          <p>By default, responsImg prevents the browser from loading a smaller image if a bigger one is already loaded.</p>
         </div>
 
         <div class="span6">
-          <h4>Subheading</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+          <h4>Media query or Element query. Your call!</h4>
+          <p>Set your breakpoints according to the window or the image itself!</p>
 
-          <h4>Subheading</h4>
-          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+          <h4>Name your breakpoints</h4>
+          <p>To keep things simple, you can give names to your breakpoints. Changing the breakpoints afterwards is then much easier!</p>
 
-          <h4>Subheading</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+          <h4>Minimal image depending on device</h4>
+          <p>Optionally, you can ask responsImg to load images in a size that will look sharp only if your browser is completely zoomed out. For websites that want to keep mobile loading to a minimum and that don't have the meta viewport tag set to device-width.</p>
         </div>
       </div>
 
