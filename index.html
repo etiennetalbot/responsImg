@@ -22,8 +22,8 @@
 
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
-          <li><a href="#">Check it out on GitHub</a></li>
-          <li><a href="#">More projects from me</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#howto">How to use</a></li>
         </ul>
         <h3 class="muted">responsImg</h3>
       </div>
@@ -32,13 +32,18 @@
 
       <div class="jumbotron">
         <h1>Responsive, regular/retina, intelligent images</h1>
-        <p class="lead">Here is <em>responsImg</em>, an easy to install, easy to use jQuery plugin that turns your &lsquo;img&rsquo; tags into responsive images with retina alternatives.</p>
-        <a class="btn btn-large btn-success" href="#">Sign up today</a>
+        <p class="lead">Here is <em>responsImg</em>, an easy to install, easy to use jQuery plugin that turns your &lt;img&gt; tags into responsive images with retina alternatives.</p>
+        <a class="btn btn-large btn-success" href="https://github.com/etiennetalbot/responsImg/archive/master.zip">Download it!</a>
+        <hr />
+        <ul class="social-btns">
+          <li><iframe src="http://ghbtns.com/github-btn.html?user=etiennetalbot&repo=responsImg&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="102" height="20"></iframe></li>
+          <li><iframe src="http://ghbtns.com/github-btn.html?user=etiennetalbot&type=follow&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="192" height="20"></iframe></li>
+        </ul>
       </div>
 
       <hr>
 
-      <div class="row-fluid marketing">
+      <div class="row-fluid marketing" id="features">
         <div class="span6">
           <h4>Retina alternatives</h4>
           <p>The plugin detects if your screen is high-DPI and provides a @2x version if specified.</p>
@@ -64,8 +69,61 @@
 
       <hr>
 
+      <h2>Why use it?</h2>
+      <p>It's just Javascript! No messing up the CSS styling, no server configuration and tweaking. Plus, it doesn't rely on a probable future <code>&lt;picture&gt;</code> tag which might cause forward compatibility problems. All you have to do is add attributes to the already existing, already working <code>&lt;img&gt;</code> tag and you're good to go!</p>
+      <p>The images intended for desktop viewing are not loaded if not necessary. The width of the browser (or of the image if configured so) is detected and the right source it loaded and displayed. Piece of cake!</p>
+
+      <h3>Downsides...?</h3>
+      <p>There is no perfect responsive images solution, and responsImg is no exception. However, it still might be the best way to get responsive images for your website.</p>
+      <p>It relies on Javascript, so you have to have some sort of fallback image in the src attribute. Since we don't want to load too much data, the source specified in the src should be very very small (like a blurred out miniature version of your image). After the content appears, your appropriate images will load.</p>
+      
+      <hr />
+
+      <h2 id="howto">How to use it</h2>
+
+      <p>Add the script tag</p>
+      
+      <pre>&lt;script src="/js/jquery.responsImg.min.js"&gt;&lt;/script&gt;</pre>
+      
+      <p>Call responsImg</p>
+
+      <pre>$('.responsive-image').responsImg({
+  breakpoints: {
+    mobile: 320,
+    desktop: 960
+  }
+});</pre>
+
+      <p>Add your image tag...</p>
+
+      <ul>
+        <li>Different image sources are set as data attributes in the <code>&lt;img&gt;</code> tag itself.</li>
+        <li>You can specify @2x image sources. If specified, they will be used if the user has a retina display. Retina sizes must have a matching non-retina size in order to work. To set a retina image, add a comma and a space after the first source in a data atribute ("image.jpg, <a href="mailto:image@2x.jpg">image@2x.jpg</a>").</li>
+        <li>Breakpoints are determined by the name of the data attribute. All of them must start with <code>data-responsimg</code> followed by the pixel value of the breakpoint (ex: <code>data-responsimg960</code>) or by a <code>-</code> plus the name of the breakpoint (ex: <code>data-responsimg-smalltablet</code>). <em>You must define the <code>breakpoints</code> parameter if you want to use named breakpoints.</em>
+        </li>
+        <li>I recommend using the smallest size as the default image (the actual <code>src</code> attribute), or else search engines won't see your image.</li>
+      </ul>
+
+      <pre>&lt;img src="default-image.png" class="responsive-image"
+  data-responsimg-mobile="image-320.png, image-320@2x.png"
+  data-responsimg480="image-480.png"
+  data-responsimg-desktop="blue-car.png"
+/&gt;</pre>
+      
+      <p>In this example, the default image is <code>default-image.png</code>. This image is always loaded… make sure it's pretty small. You could always remove the <code>src</code> attribute completely if you really wanted to.</p>
+
+      <p>The image <code>image-320.png</code> is loaded and displayed if the window reaches a width of <strong>320</strong> pixels. If the screen used is retina, the image used will only be <code>image-320@2x.png</code>. If the window reaches <strong>480</strong> pixels wide, <code>image-480.png</code> will be loaded and displayed. Even if you have a retina display, this image will override the previous one. If the window reaches <strong>960</strong> pixels wide, <code>blue-car.png</code> will be loaded and displayed.</p>
+
+      <p><strong>Important</strong> - <em>Please keep in mind that if the elementQuery is set to true, the breakpoints won't be defined by the width of the window but instead by the width of the image itself.</em></p>
+
+      <h3>More options</h3>
+
+      <p>You've seen breakpoint naming, but more options are available like relying to image width instead of browser width, allowing downsizing and more. For the <strong>full list of options</strong>, visit the <a href="https://github.com/etiennetalbot/responsImg" target="_blank">responsImg GitHub repository</a>.</p>
+
+      <hr />
+
       <div class="footer">
-        <p>© Company 2013</p>
+        <p>By <a href="https://github.com/etiennetalbot" target="_blank">Etienne Talbot</a></p>
       </div>
 
     </div>
