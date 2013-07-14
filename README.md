@@ -40,6 +40,9 @@ Parameters
     	baz: 960
     }
 
+### considerDevice
+*(boolean) default: false* - Set to true if you want images loaded in the smallest size necessary to fit the number of pixels needed when the browser is zoomed out. Perfect for websites that want to keep mobile loading to a minimum and that don't have the meta viewport tag set to device-width.
+
 Methods
 -------
 
