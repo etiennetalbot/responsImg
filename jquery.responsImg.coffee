@@ -1,7 +1,7 @@
 ###
 # responsImg jQuery Plugin
 # Turn your <img> tags into responsive images with retina alternatives
-# version 1.4.0, July 12th, 2013
+# version 1.4.1, July 12th, 2013
 # by Etienne Talbot
 ###
 
@@ -151,8 +151,9 @@ jQuery.responsImg = (element, settings) ->
 
 jQuery.fn.responsImg = (options) ->
   @each( ->
-    if jQuery(this).data('responsImg') is undefined
+    jQthis = jQuery this
+    if jQthis.data('responsImg') is undefined
       plugin = new jQuery.responsImg this, options
-      jQuery(this).data 'responsImg', plugin
+      jQthis.data 'responsImg', plugin
     return
   )

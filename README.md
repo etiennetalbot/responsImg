@@ -12,7 +12,7 @@ This plugin requires jQuery 1.7 or up.
 Information
 -----------
 
-Current version: 1.4.0
+Current version: 1.4.1
 
 - Different image sources are set as data attributes in the `<img>` tag itself.
 - You can specify @2x image sources. If specified, they will be used if the user has a retina display. Retina sizes must have a matching non-retina size in order to work. To set a retina image, add a comma and a space after the first source in a data atribute ("image.jpg, image@2x.jpg").
