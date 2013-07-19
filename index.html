@@ -71,7 +71,7 @@
         </div>
       </div>
 
-      <hr>
+      <hr />
 
       <h2>Why use it?</h2>
       <p>It's just Javascript! No messing up the CSS styling, no server configuration and tweaking. Plus, it doesn't rely on a probable future <code>&lt;picture&gt;</code> tag which might cause forward compatibility problems. All you have to do is add attributes to the already existing, already working <code>&lt;img&gt;</code> tag and you're good to go!</p>
@@ -79,7 +79,7 @@
 
       <h3>Downsides...?</h3>
       <p>There is no perfect responsive images solution, and responsImg is no exception. However, it still might be the best way to get responsive images for your website.</p>
-      <p>It relies on Javascript, so you have to have some sort of fallback image in the src attribute. Since we don't want to load too much data, the source specified in the src should be very very small (like a blurred out miniature version of your image). After the content appears, your appropriate images will load.</p>
+      <p>It relies on Javascript, so you have to have some sort of fallback image in the src attribute. Since we don't want to load too much data, the source specified in the src should be very very small (like a blurred out miniature version of your image) or your smallest mobile image. Keep in mind: the <code>src</code> attribute represents <strong>breakpoint 0px</strong>. After the content appears, your appropriate images will load.</p>
       
       <hr />
 
@@ -103,7 +103,8 @@
       <ul>
         <li>Different image sources are set as data attributes in the <code>&lt;img&gt;</code> tag itself.</li>
         <li>You can specify @2x image sources. If specified, they will be used if the user has a retina display. Retina sizes must have a matching non-retina size in order to work. To set a retina image, add a comma and a space after the first source in a data atribute ("image.jpg, <a href="mailto:image@2x.jpg">image@2x.jpg</a>").</li>
-        <li>Breakpoints are determined by the name of the data attribute. All of them must start with <code>data-responsimg</code> followed by the pixel value of the breakpoint (ex: <code>data-responsimg960</code>) or by a <code>-</code> plus the name of the breakpoint (ex: <code>data-responsimg-smalltablet</code>). <em>You must define the <code>breakpoints</code> parameter if you want to use named breakpoints.</em>
+        <li>Breakpoints are determined by the name of the data attribute. All of them must start with <code>data-responsimg</code> followed by the pixel value of the breakpoint (ex: <code>data-responsimg960</code>) or by a <code>-</code> plus the name of the breakpoint (ex: <code>data-responsimg-smalltablet</code>). <em>You must define the <code>breakpoints</code> parameter if you want to use named breakpoints.</em><br />
+        The <code>src</code> tag represents <strong>breakpoint zero</strong> (0px).
         </li>
         <li>I recommend using the smallest size as the default image (the actual <code>src</code> attribute), or else search engines won't see your image.</li>
       </ul>
