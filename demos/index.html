@@ -10,6 +10,7 @@ a { color: #666; }
 a:hover { color: #000; }
 
 .container { background:#eee; font-family: monospace; margin: 0 0 30px; padding: 30px; }
+div.responsimg { background-position: center; background-size: cover; background-repeat: no-repeat; height: 400px; width: 100%; }
 
 </style>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
@@ -44,7 +45,7 @@ var callRecheck = function(theSize){
             height: '200px'
         });
     }
-    
+
     rImgEl.data('responsImg').recheck();
 }
 
@@ -61,19 +62,29 @@ $(document).on('ready', init);
         Go ahead and resize your browser :)<br />
         When you stop resizing, the image will change
     </p>
-    
+
     <div class="container">
         $('.responsimg').responsImg({<br />
         &nbsp;&nbsp;allowDownsize: true<br />
         });
     </div>
 
+    <h3>Used on an image tag</h3>
     <p><img src="http://placehold.it/319x200/000000/ffffff/" class="responsimg" width="100%" alt="" data-test="test2"
         data-responsimg320="http://placehold.it/479x294/aa0000/ffffff/"
         data-responsimg480="http://placehold.it/767x400/00aa00/ffffff/"
         data-responsimg768="http://placehold.it/1024x500/0000aa/ffffff/"
     /></p>
-    
+
+    <h3>Used on a background-image</h3>
+
+    <div style="background-image: url(http://placehold.it/319x200/000000/ffffff/)"
+        class="responsimg"
+        data-responsimg320="http://placehold.it/479x294/aa0000/ffffff/"
+        data-responsimg480="http://placehold.it/767x400/00aa00/ffffff/"
+        data-responsimg768="http://placehold.it/1024x500/0000aa/ffffff/">
+    </div>
+
     <h2>Element Query mode</h2>
     <p>
         <a href="javascript:callRecheck('bigger');">Click here</a> to change make the image <strong>bigger</strong><br />
@@ -86,7 +97,7 @@ $(document).on('ready', init);
         &nbsp;&nbsp;allowDownsize: true<br />
         });
     </div>
-    
+
     <p><img src="http://placehold.it/50x100/000000/ffffff/" width="200" height="100" class="responsimg-element" alt=""
         data-responsimg100="http://placehold.it/100x50/005500/ffffff/"
         data-responsimg200="http://placehold.it/200x100/000055/ffffff/"

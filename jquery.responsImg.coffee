@@ -6,7 +6,7 @@
 ###
 
 jQuery.responsImg = (element, settings) ->
-  
+
   # default config values
   config =
     allowDownsize:  false    # If set to false, smaller images will never be loaded on resize or orientationchange
@@ -14,27 +14,45 @@ jQuery.responsImg = (element, settings) ->
     delay:          200      # Delay between the window resize action and the image change (too low means more demanding for the browser)
     breakpoints:    null     # Object containing the different breakpoints for your page or element
     considerDevice: false    # If true, responsImg will pick the image size while considering the zoomed-out level of mobile devices
-  
+
   jQuery.extend config, settings if settings
-  
+
   theWindow     = jQuery window
   element       = jQuery element
   rimData       = {}
+  elementType   = null
   resizeTimer   = null
   largestSize   = 0
   retinaDisplay = false
-  
+
   # initialize the plugin
   init = ->
-    rimData[0]    = new Array(element.attr 'src')
+    elementType   = getElementType element
     retinaDisplay = true if window.devicePixelRatio >= 1.5
 
+    if elementType == 'IMG'
+      rimData[0] = new Array(element.attr 'src')
+    else
+      rimData[0] = new Array(getBackgroundImage element)
+
     theWindow.on 'resize.responsImg orientationchange.responsImg', resizeDetected
-    
+
     determineSizes()
 
     return
-  
+
+  # Return the image path from a background-image style
+  getBackgroundImage = (element) ->
+    bg = element.css 'background-image'
+    bg = bg.replace 'url(', ''
+    bg = bg.replace ')', ''
+
+    return bg
+
+  # Return the jquery element type
+  getElementType = (element) ->
+    return $(element).prop 'tagName'
+
   # Put in an object the responsive values of the image
   determineSizes = ->
     elData        = element.data()
@@ -58,7 +76,7 @@ jQuery.responsImg = (element, settings) ->
     checkSizes()
 
     return
-  
+
   # The browser resize or rotation has been detected
   resizeDetected = ->
     clearTimeout resizeTimer
@@ -73,11 +91,11 @@ jQuery.responsImg = (element, settings) ->
 
     if config.elementQuery is true
       definedWidth = element.width()
-      
+
       if window.orientation? and config.considerDevice
         windowWidth       = theWindow.width()
         mobileWindowWidth = getMobileWindowWidth()
-        
+
         definedWidth = Math.ceil(mobileWindowWidth * definedWidth / windowWidth)
 
     else
@@ -86,7 +104,7 @@ jQuery.responsImg = (element, settings) ->
 
       else
         definedWidth = theWindow.width()
-    
+
     definedWidth
 
   # Detect the width of the mobile window
@@ -125,16 +143,28 @@ jQuery.responsImg = (element, settings) ->
       if retinaDisplay is true and rimData[currentSelection][1]?
         newSrc = rimData[currentSelection][1]
 
-      setImage newSrc
+      if elementType == 'IMG'
+        setImage element, newSrc
+      else
+        setBackgroundImage element, newSrc
 
     return
 
   # Change the image's src
-  setImage = (newSrc) ->
+  setImage = (element, newSrc) ->
     oldSrc = element.attr 'src'
 
     if newSrc != oldSrc
       element.attr 'src', newSrc
+
+    return
+
+  # Change the background-image's src
+  setBackgroundImage = (element, newSrc) ->
+    oldSrc = getBackgroundImage element
+
+    if newSrc != oldSrc
+      element.css 'background-image', 'url('+newSrc+')'
 
     return
 
@@ -146,7 +176,7 @@ jQuery.responsImg = (element, settings) ->
     checkSizes()
 
     return
-  
+
   return this
 
 jQuery.fn.responsImg = (options) ->
