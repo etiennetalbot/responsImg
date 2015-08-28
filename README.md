@@ -12,9 +12,10 @@ This plugin requires jQuery 1.7 or up.
 Information
 -----------
 
-Current version: 1.4.1
+Current version: 1.5.0
 
 - Different image sources are set as data attributes in the `<img>` tag itself.
+- (NEW!) Will work on background images if not set on any tag besides an `<img>` tag (if you need dynamic responsive background images).
 - You can specify @2x image sources. If specified, they will be used if the user has a retina display. Retina sizes must have a matching non-retina size in order to work. To set a retina image, add a comma and a space after the first source in a data atribute ("image.jpg, image@2x.jpg").
 - Breakpoints are determined by the name of the data attribute. All of them must start with `data-responsimg` followed by the pixel value of the breakpoint (ex: `data-responsimg960`) or by a `-` plus the name of the breakpoint (ex: `data-responsimg-smalltablet`). *You must define the `breakpoints` parameter if you want to use named breakpoints.*
 - The `src` attribute is considered like a **0px breakpoint**.
