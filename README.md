@@ -51,7 +51,8 @@ Methods
 ###recheck()
 Ask responsImg to check the width again and trigger a `src` change if necessary
 
-    $('.responsive-image').data('responsImg').recheck()
+    var responsiveImages = $('.responsive-image').responsImg();
+    responsiveImages.recheck();
    
 
 Usage
