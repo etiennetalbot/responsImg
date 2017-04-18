@@ -48,7 +48,7 @@ Parameters
 Methods
 -------
 
-###recheck()
+### recheck()
 Ask responsImg to check the width again and trigger a `src` change if necessary
 
     $('.responsive-image').data('responsImg').recheck()
